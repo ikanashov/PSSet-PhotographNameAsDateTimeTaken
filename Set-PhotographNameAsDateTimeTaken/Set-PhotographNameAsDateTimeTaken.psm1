@@ -51,7 +51,8 @@ function GetDateAndTimeFromImage($imagePath)
 	    $strMinute = [String]::Join('',$arMinute)   
 	    $strSecond = [String]::Join('',$arSecond)  
 	    $TimeTaken = $strHour + "." + $strMinute + "." + $strSecond
-	    $FullDate = $DateTaken + "_" + $TimeTaken
+	    $OldName=(Get-ChildItem $imagePath).BaseName
+	    $FullDate = $DateTaken + "_" + $TimeTaken + "_" + $OldName
      }
 	catch
 	{
