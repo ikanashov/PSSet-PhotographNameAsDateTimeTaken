@@ -56,8 +56,10 @@ function GetDateAndTimeFromImage($imagePath)
      }
 	catch
 	{
-		$FullDate=(Get-ChildItem $imagePath).BaseName
-		Write-Error "Date taken haven't been found, probably picture is image (doesn't have the date taken property) Name set as [$FullDate]"
+		$lastwritetime = (Get-ChildItem $imagePath).LastWriteTime.ToString('yyyy\.MM\.dd\_hh\.mm\.ss')
+		$OldName = (Get-ChildItem $imagePath).BaseName
+		$FullDate= $lastwritetime + "_" + $lastwritetime
+		Write-Verbose "Date taken haven't been found, probably picture is image (doesn't have the date taken property) Name set as [$FullDate]"
 	}
 
 	$image.Dispose()
